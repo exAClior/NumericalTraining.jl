@@ -1,4 +1,4 @@
-using NumericalTraining: sqrt_iter, eqn_solver, numerical_integrator
+using NumericalTraining: sqrt_iter, eqn_solver, numerical_integrator, horner_polynomial
 using Test
 
 @testset "Sqrt" begin
@@ -53,5 +53,12 @@ end
 
 @testset "1.16" begin
 	# huh
+end
+
+@testset "1.2.1 Horner's Rule" begin
+	f = x -> x^4 + 2 * x^3 - 3 * x^2 +2
+	x = 2
+	ans = horner_polynomial(x, [2, 0, -3, 2, 1]) # this is not really optimal because of the SIMD on mordern computer https://github.com/ArrogantGao/Estrin.jl
+	@test ans ≈ f(x)
 end
 

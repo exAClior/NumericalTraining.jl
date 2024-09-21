@@ -17,3 +17,11 @@ function numerical_integrator(f, a, b, n)
 	end
 	return sum * h
 end
+
+function horner_polynomial(x, coeffs)
+	result = 0.0
+	for i in length(coeffs):-1:1
+		result = result * x + coeffs[i]
+	end
+	return result
+end
